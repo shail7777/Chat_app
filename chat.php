@@ -89,52 +89,52 @@ for(var i = 0; i < fname.length; i++){
 }
 
 document.getElementById("insert").onclick = function() {insert()};
-     function insert(){
-       var getfname = document.getElementById("getfirst").value;
-       var req = new XMLHttpRequest();
-       req.onreadystatechange = function(){
-         if (req.readyState == 4 && status == 200) {
-           var response = req.responseText;
-           if (response){
-             document.getElementById("chat").innerHTML = response.data;
-           } 
-         }
-         else {
-             alert('NULL');
-             //document.getElementById("chat").innerHTML = NULL;
-           }
-         }
-       req.open('GET','insert.php?fname=' + getfname, true);
-       req.send(null);  
-     }
+function insert(){
+  var getfname = document.getElementById("getfirst").value;
+   var req = new XMLHttpRequest();
+   req.onreadystatechange = function(){
+     if (req.readyState == 4 && status == 200) {
+       var response = req.responseText;
+       if (response){
+         document.getElementById("chat").innerHTML = response.data;
+        } 
+      }
+      else {
+        alert('NULL');
+        //document.getElementById("chat").innerHTML = NULL;
+      }
+    }
+    req.open('GET','insert.php?fname=' + getfname, true);
+    req.send(null);  
+}
      
 document.getElementById("submit").onclick = function() {upd()};
-     function upd(){
-       if(Validation()){
-         if(Verification()){
-           var first = document.getElementById("f").value;
-           var text = document.getElementById("send").value;
-           var req = new XMLHttpRequest();
-           //req.onreadystatechange = function(){
-           if(req.onreadystatechange){
-             if (req.readyState == 4 && status == 200) {
-                 document.getElementById('updated').innerHTML = 'Done';
-                 }
-               else {
-                 alert('There was a problem with the request.');
-                }
+function upd(){
+  if(Validation()){
+    if(Verification()){
+      var first = document.getElementById("f").value;
+      var text = document.getElementById("send").value;
+      var req = new XMLHttpRequest();
+      //req.onreadystatechange = function(){
+      if(req.onreadystatechange){
+        if (req.readyState == 4 && status == 200) {
+          document.getElementById('updated').innerHTML = 'Done';
+        }
+        else {
+          alert('There was a problem with the request.');
+        }
            
-           req.open('POST','update.php',true);
-           req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-           req.send('fname=' + encodeURIComponent(first), 'text=' + encodeURIComponent(text));  
-         }
-         else{ alert('NOt ready'); } 
-         }
-         else{
-           alert("Inncorect inforamtion");
-           }
-     }
-     }
+        req.open('POST','update.php',true);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.send('fname=' + encodeURIComponent(first), 'text=' + encodeURIComponent(text));  
+      }
+      else{ alert('NOt ready'); } 
+    }
+    else{
+      alert("Inncorect inforamtion");
+      }
+  }
+}
      
     
 </script>
